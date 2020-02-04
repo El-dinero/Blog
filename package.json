@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env PORT=5000 node index.js",
-    "start": "cross-env PORT=5000 nodemon index.js"
+    "start": "gulp build & nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,11 @@
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-node": "^11.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.2",
     "nodemon": "^2.0.2"
   },
   "engines": {
@@ -30,9 +35,11 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
+    "del": "^5.1.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
-    "mongoose": "^5.8.11"
+    "mongoose": "^5.8.11",
+    "static-asset": "^0.6.0"
   }
 }
