@@ -1,13 +1,13 @@
 /* eslint-disable node/no-unpublished-require */
 const gulp = require("gulp");
 const concat = require("gulp-concat");
-// const autoprefixer = require("gulp-autoprefixer");
+const sass = require("gulp-sass");
 const cleanCSS = require("gulp-clean-css");
 const uglify = require("gulp-uglify");
 const del = require("del");
 /* eslint-enable node/no-unpublished-require */
 //Порядок подключения css файлов
-const cssFiles = ["./dev/css/**/*.css"];
+const cssFiles = ["./dev/css/**/*.scss"];
 //Порядок подключения js файлов
 const jsFiles = ["./dev/js/**/*.js"];
 
@@ -25,12 +25,7 @@ function styles() {
       //Объединение файлов в один
       .pipe(concat("styles.css"))
       //Добавить префиксы
-      // .pipe(
-      //   autoprefixer({
-      //     browsers: ["last 2 versions"],
-      //     cascade: false
-      //   })
-      // )
+      .pipe(sass())
       //Минификация CSS
       .pipe(
         cleanCSS({
