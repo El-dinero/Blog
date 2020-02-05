@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env PORT=5000 node index.js",
-    "start": "gulp build & nodemon index.js"
+    "start": "concurrently \"gulp dev \" \"nodemon index.js\""
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
+    "concurrently": "^5.1.0",
     "del": "^5.1.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",

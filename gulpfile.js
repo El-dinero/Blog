@@ -66,7 +66,10 @@ function scripts() {
       .pipe(gulp.dest("./pablic/javascripts"))
   );
 }
-
+function watch() {
+  gulp.watch("./dev/scss/**/*.scss", styles);
+  gulp.watch("./dev/js/**/*.js", scripts);
+}
 //Удалить всё в указанной папке
 function clean() {
   return del(dels);
@@ -76,11 +79,10 @@ function clean() {
 gulp.task("styles", styles);
 //Таск вызывающий функцию scripts
 gulp.task("scripts", scripts);
-//Таск для очистки папки build
+gulp.task("watch", watch);
 gulp.task("del", clean);
 
-gulp.task("default", gulp.series(styles), () => {
-  gulp.watch("dev/scss/**/*.scss", ["scss"]);
-});
 //Таск для удаления файлов в папке build и запуск styles и scripts
 gulp.task("build", gulp.series(clean, gulp.parallel(styles, scripts)));
+
+gulp.task("dev", gulp.series("build", "watch"));
