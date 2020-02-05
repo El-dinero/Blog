@@ -4,10 +4,13 @@ const concat = require("gulp-concat");
 const sass = require("gulp-sass");
 const cleanCSS = require("gulp-clean-css");
 const uglify = require("gulp-uglify");
+const autoprefixer = require("gulp-autoprefixer");
+const cssnano = require("gulp-cssnano");
+const plumber = require("gulp-plumber");
 const del = require("del");
 /* eslint-enable node/no-unpublished-require */
 //Порядок подключения css файлов
-const cssFiles = ["./dev/css/**/*.scss"];
+const cssFiles = ["./dev/scss/**/*.scss"];
 //Порядок подключения js файлов
 const jsFiles = ["./dev/js/**/*.js"];
 
@@ -26,7 +29,14 @@ function styles() {
       .pipe(concat("styles.css"))
       //Добавить префиксы
       .pipe(sass())
+      .pipe(plumber())
       //Минификация CSS
+      .pipe(
+        autoprefixer(["last 15 versions", "> 1%", "ie 8", "ie 7"], {
+          cascade: true
+        })
+      )
+      .pipe(cssnano())
       .pipe(
         cleanCSS({
           level: 2
@@ -68,5 +78,9 @@ gulp.task("styles", styles);
 gulp.task("scripts", scripts);
 //Таск для очистки папки build
 gulp.task("del", clean);
+
+gulp.task("default", gulp.series(styles), () => {
+  gulp.watch("dev/scss/**/*.scss", ["scss"]);
+});
 //Таск для удаления файлов в папке build и запуск styles и scripts
 gulp.task("build", gulp.series(clean, gulp.parallel(styles, scripts)));
