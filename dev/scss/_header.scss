@@ -18,17 +18,18 @@
     padding: 0 $freeSpace 0 $freeSpace;
 
     .logo {
-      background-image: url('../img/logo.png');
+      background-image: url("../images/logo.svg");
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
       // background-color: lightcoral;
       width: 120px;
-      height: $headerHeight - 3;
+      height: $headerHeight - 14;
       margin-top: 3px;
     }
 
     .menu {
+      margin-top: $freeSpace;
       display: flex;
       list-style: none;
       height: 100%;
