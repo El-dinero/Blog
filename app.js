@@ -14,7 +14,7 @@ mongoose.connection
   .once("open", () => {
     const info = mongoose.connections[0];
     console.log(
-      `Connected to Host:${info.host} to:${info.port} MyDB:${info.name}`
+      `Connected to Host:${info.host}/ to:${info.port}/ MyDB:${info.name}`
     );
   });
 mongoose.connect(config.MONGO_URL, {
