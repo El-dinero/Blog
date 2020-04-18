@@ -5,20 +5,6 @@ const staticAsset = require("static-asset");
 const mongoose = require("mongoose");
 const config = require("./config");
 
-//database
-mongoose.Promise = global.Promise;
-mongoose.set("debug", config.IS_PRODUCTION);
-mongoose.connection
-  .on("error", (error) => console.log(error))
-  .on("close", () => console.log("Database connection..."))
-  .once("open", () => {
-    const info = mongoose.connections[0];
-    console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
-  });
-mongoose.connect(config.MONGO_URL, {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-});
 //EXPRESS
 const app = express();
 
@@ -53,7 +39,23 @@ app.use((error, req, res, next) => {
     error: !config.IS_PRODUCTION ? error : {},
   });
 });
-
-app.listen(config.PORT, () => {
-  console.log(`Server started on port${config.PORT}`);
+//database
+mongoose.Promise = global.Promise;
+mongoose.set("debug", config.IS_PRODUCTION);
+mongoose.connection
+  .on("error", (error) => console.log(error))
+  .on("close", () => console.log("Database connection..."))
+  .once("open", () => {
+    const info = mongoose.connections[0];
+    console.log(
+      `Connected to Host:${info.host}/ to:${info.port}/ MyDB:${info.name}`
+    );
+    //Listen Express
+    app.listen(config.PORT, () => {
+      console.log(`Server started on port ${config.PORT}!`);
+    });
+  });
+mongoose.connect(config.MONGO_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
 });
