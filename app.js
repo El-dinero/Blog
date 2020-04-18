@@ -13,7 +13,9 @@ mongoose.connection
   .on("close", () => console.log("Database connection..."))
   .once("open", () => {
     const info = mongoose.connections[0];
-    console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
+    console.log(
+      `Connected to Host:${info.host} to:${info.port} MyDB:${info.name}`
+    );
   });
 mongoose.connect(config.MONGO_URL, {
   useUnifiedTopology: true,
@@ -55,5 +57,5 @@ app.use((error, req, res, next) => {
 });
 
 app.listen(config.PORT, () => {
-  console.log(`Server started on port${config.PORT}`);
+  console.log(`Server started on port ${config.PORT}!`);
 });
