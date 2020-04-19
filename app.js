@@ -21,7 +21,7 @@ app.use(
 );
 
 app.use("/", require("./routes/index"));
-app.use("/auth", require("./routes/auth"));
+app.use("/api/auth/register", require("./routes/auth"));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -42,6 +42,7 @@ app.use((error, req, res, next) => {
 //database
 mongoose.Promise = global.Promise;
 mongoose.set("debug", config.IS_PRODUCTION);
+mongoose.set("useCreateIndex", true);
 mongoose.connection
   .on("error", (error) => console.log(error))
   .on("close", () => console.log("Database connection..."))
