@@ -58,6 +58,7 @@ app.use(
 
 app.use("/", require("./routes/index"));
 app.use("/api/auth", require("./routes/auth"));
+app.use("/post", require("./routes/post"));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
