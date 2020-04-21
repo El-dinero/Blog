@@ -3,7 +3,7 @@ const gulp = require("gulp");
 const concat = require("gulp-concat");
 const sass = require("gulp-sass");
 const cleanCSS = require("gulp-clean-css");
-const uglify = require("gulp-uglify");
+// const uglify = require("gulp-uglify");
 const autoprefixer = require("gulp-autoprefixer");
 const cssnano = require("gulp-cssnano");
 const plumber = require("gulp-plumber");
@@ -12,11 +12,14 @@ const del = require("del");
 //Порядок подключения css файлов
 const cssFiles = ["./dev/scss/**/*.scss"];
 //Порядок подключения js файлов
-const jsFiles = ["./dev/js/**/*.js"];
+const jsFiles = [
+  "./dev/js/**/*.js",
+  "node_modules/medium-editor/dist/js/medium-editor.min.js",
+];
 
 const dels = [
   "./pablic/javascripts/scripts.js",
-  "./pablic/staylesheets/styles.css"
+  "./pablic/staylesheets/styles.css",
 ];
 //Таск на стили CSS
 function styles() {
@@ -33,13 +36,13 @@ function styles() {
       //Минификация CSS
       .pipe(
         autoprefixer(["last 15 versions", "> 1%", "ie 8", "ie 7"], {
-          cascade: true
+          cascade: true,
         })
       )
       .pipe(cssnano())
       .pipe(
         cleanCSS({
-          level: 2
+          level: 2,
         })
       )
       //Выходная папка для стилей
@@ -57,11 +60,11 @@ function scripts() {
       //Объединение файлов в один
       .pipe(concat("scripts.js"))
       //Минификация JS
-      .pipe(
-        uglify({
-          toplevel: true
-        })
-      )
+      // .pipe(
+      //   uglify({
+      //     toplevel: true
+      //   })
+      // )
       //Выходная папка для скриптов
       .pipe(gulp.dest("./pablic/javascripts"))
   );
