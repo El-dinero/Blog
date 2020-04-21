@@ -1,23 +1,31 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const URLSlugs = require("mongoose-url-slugs");
+const tr = require("transliter");
 
 const schema = new Schema(
   {
-    name: {
+    title: {
       type: String,
-      require: true
+      required: true,
     },
-    description: {
-      type: String
-    }
+    body: {
+      type: String,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
+schema.plugin(
+  URLSlugs("title", {
+    field: "url",
+    generator: (text) => tr.slugify(text),
+  })
+);
 schema.set("toJSON", {
-  virtuals: true
+  virtuals: true,
 });
 
-module.exports = mongoose.model("post", schema);
+module.exports = mongoose.model("Post", schema);
