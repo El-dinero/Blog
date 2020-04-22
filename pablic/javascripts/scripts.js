@@ -1,13 +1,17 @@
 /* eslint-disable no-undef */
 $(function () {
+  // remove errors
+  function removeErrors() {
+    $("form.login p.error, form.register p.error").remove();
+    $("form.login input, form.register input").removeClass("error");
+  }
   // toggle
   var flag = true;
   $(".switch-button").on("click", function (e) {
     e.preventDefault();
 
     $("input").val("");
-    $("p.error").remove();
-    $("input").removeClass("error");
+    removeErrors();
 
     if (flag) {
       flag = false;
@@ -22,13 +26,13 @@ $(function () {
 
   // clear
   $("form.login input, form.register input").on("focus", function () {
-    $("form.login p.error, form.register p.error").remove();
-    $("form.login input, form.register input").removeClass("error");
+    removeErrors();
   });
 
   // register
   $(".register-button").on("click", function (e) {
     e.preventDefault();
+    removeErrors();
 
     var data = {
       login: $("#register-login").val(),
@@ -57,8 +61,7 @@ $(function () {
   // login
   $(".login-button").on("click", function (e) {
     e.preventDefault();
-    $("p.error").remove();
-    $("input").removeClass("error");
+    removeErrors();
 
     var data = {
       login: $("#login-login").val(),
@@ -97,15 +100,22 @@ $(function () {
       hideOnClick: true,
     },
   });
-  // clear
-  $(".post-form input, #post-body").on("focus", function () {
+
+  // remove errors
+  function removeErrors() {
     $(".post-form p.error").remove();
     $(".post-form input, #post-body").removeClass("error");
+  }
+
+  // clear
+  $(".post-form input, #post-body").on("focus", function () {
+    removeErrors();
   });
 
   // publish
   $(".publish-button").on("click", function (e) {
     e.preventDefault();
+    removeErrors();
 
     var data = {
       title: $("#post-title").val(),

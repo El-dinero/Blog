@@ -7,7 +7,6 @@ const session = require("express-session");
 
 const MongoStore = require("connect-mongo")(session);
 const config = require("./config");
-
 //EXPRESS
 const app = express();
 //database
@@ -22,6 +21,7 @@ mongoose.connection
     console.log(
       `Connected to Host:${info.host}/ to:${info.port}/ MyDB:${info.name}`
     );
+    // require('./mocks')();
     //Listen Express
     app.listen(config.PORT, () => {
       console.log(`Server started on port ${config.PORT}!`);
