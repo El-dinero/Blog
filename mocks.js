@@ -1,3 +1,5 @@
+//Автопостер
+
 const faker = require("faker");
 const TurndownService = require("turndown");
 
@@ -22,3 +24,4 @@ module.exports = () => {
     })
     .catch(console.log);
 };
+//Автопостер

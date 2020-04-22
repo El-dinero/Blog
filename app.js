@@ -9,6 +9,7 @@ const MongoStore = require("connect-mongo")(session);
 const config = require("./config");
 //EXPRESS
 const app = express();
+
 //database
 mongoose.Promise = global.Promise;
 mongoose.set("debug", config.IS_PRODUCTION);
@@ -21,6 +22,7 @@ mongoose.connection
     console.log(
       `Connected to Host:${info.host}/ to:${info.port}/ MyDB:${info.name}`
     );
+    //Autopost + 10
     // require("./mocks")();
     //Listen Express
     app.listen(config.PORT, () => {
@@ -56,6 +58,7 @@ app.use(
   express.static(path.join(__dirname, "node_modules", "jquery", "dist"))
 );
 
+//routes
 app.use("/", require("./routes/index"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/post", require("./routes/post"));
