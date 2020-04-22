@@ -21,7 +21,7 @@ mongoose.connection
     console.log(
       `Connected to Host:${info.host}/ to:${info.port}/ MyDB:${info.name}`
     );
-    // require('./mocks')();
+    // require("./mocks")();
     //Listen Express
     app.listen(config.PORT, () => {
       console.log(`Server started on port ${config.PORT}!`);
