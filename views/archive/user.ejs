@@ -1,4 +1,4 @@
-<%- include('layout/head.ejs'); -%> <%- include('layout/header.ejs'); -%>
+<%- include('../layout/head.ejs'); -%> <%- include('../layout/header.ejs'); -%>
 <main class="main">
   <div class="container">
     <div class="content">
@@ -15,12 +15,7 @@
           <p><%=posts[i].body %></p>
         </div>
         <div class="bottom">
-          <div class="author">
-            Автор:
-            <a href="/users/<%=posts[i].owner.login %>">
-              <%=posts[i].owner.login %>
-            </a>
-          </div>
+          <div class="author"></div>
           <a href="/">Комментарии</a>
         </div>
       </div>
@@ -28,15 +23,23 @@
 
       <div class="pagination">
         <% if (current > 2) { %>
-        <a class="new" href="/archive/<%= Number(current) - 1 %>">← К новым</a>
+        <a
+          class="new"
+          href="/users/<%=_user.login %>/<%= Number(current) - 1 %>"
+          >← К новым</a
+        >
         <% } %> <% if (current == 2) { %>
-        <a class="new" href="/">← На главную</a>
+        <a class="new" href="/users/<%=_user.login %>">← На первую</a>
         <% } %> <% if (pages > 0 && current < pages) { %>
-        <a class="old" href="/archive/<%= Number(current) + 1 %>">К старым →</a>
+        <a
+          class="old"
+          href="/users/<%=_user.login %>/<%= Number(current) + 1 %>"
+          >К старым →</a
+        >
         <% } %>
       </div>
     </div>
-    <%- include('components/sidebar.ejs'); -%>
+    <%- include('../components/sidebar.ejs'); -%>
   </div>
 </main>
-<%- include('layout/footer.ejs'); -%>
+<%- include('../layout/footer.ejs'); -%>

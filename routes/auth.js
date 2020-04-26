@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt-nodejs");
 
-const User = require("../models/user");
+const models = require("../models/user");
 
 router.post("/register", (req, res) => {
   const { login, password, passwordConfirm } = req.body;
@@ -41,12 +41,12 @@ router.post("/register", (req, res) => {
       fields: ["password"],
     });
   } else {
-    User.findOne({
+    models.User.findOne({
       login,
     }).then((user) => {
       if (!user) {
         bcrypt.hash(password, null, null, (err, hash) => {
-          User.create({
+          models.User.create({
             login,
             password: hash,
           })
@@ -91,7 +91,7 @@ router.post("/login", (req, res) => {
       fields,
     });
   } else {
-    User.findOne({
+    models.User.findOne({
       login,
     })
       .then((user) => {
