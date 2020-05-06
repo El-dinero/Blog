@@ -21,7 +21,7 @@ router.get("/add", (req, res) => {
   }
 });
 
-router.post("/add", (req, res) => {
+router.post("/add", (req, res, next) => {
   const userId = req.session.userId;
   const userLogin = req.session.userLogin;
 
@@ -67,6 +67,7 @@ router.post("/add", (req, res) => {
           });
         })
         .catch((err) => {
+          next();
           console.log(err);
           res.json({
             ok: false,

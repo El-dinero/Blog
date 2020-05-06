@@ -3,7 +3,7 @@
   "env": {
     "NODE_ENV": "development",
     "PORT": 3000,
-    "MONGO_URL": "mongodb+srv://vasko1234:vasko1234@conect-okoar.mongodb.net/myblog?retryWrites=true&w=majority"
+    "MONGO_URL": "mongodb://localhost/blog"
   },
   "ext": ".js,.json",
   "watch": "./"

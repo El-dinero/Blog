@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt-nodejs");
 
 const models = require("../models/user");
 
-router.post("/register", (req, res) => {
+router.post("/register", (req, res, next) => {
   const { login, password, passwordConfirm } = req.body;
   if (!login || !password || !passwordConfirm) {
     const fields = [];
@@ -59,6 +59,7 @@ router.post("/register", (req, res) => {
               });
             })
             .catch((err) => {
+              next();
               console.log(err);
               res.json({
                 ok: false,
@@ -78,7 +79,7 @@ router.post("/register", (req, res) => {
 });
 
 // POST is login
-router.post("/login", (req, res) => {
+router.post("/login", (req, res, next) => {
   const { password, login } = req.body;
   if (!login || !password) {
     const fields = [];
@@ -122,6 +123,7 @@ router.post("/login", (req, res) => {
       })
       .catch((err) => {
         console.log(err);
+        next();
         res.json({
           ok: false,
           error: "Ошибка, попробуйте позже!",

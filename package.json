@@ -34,7 +34,7 @@
     "nodemon": "^2.0.2"
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": ">=9.0.0"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -54,6 +54,6 @@
     "mongoose-url-slugs": "^1.0.2",
     "static-asset": "^0.6.0",
     "transliter": "^2.2.1",
-    "turndown": "^9.0.0"
+    "turndown": "^6.0.0"
   }
 }
