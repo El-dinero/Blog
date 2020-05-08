@@ -20,7 +20,7 @@ mongoose.connection
   .once("open", () => {
     const info = mongoose.connections[0];
     console.log(
-      `Connected to Host:${info.host}/ to:${info.port}/ MyDB:${info.name}`
+      `Connected to Host:${info.host}:${info.port}/${info.name}`
     );
     //Autopost + 10
     // require("./mocks")();
