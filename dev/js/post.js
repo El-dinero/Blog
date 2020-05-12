@@ -35,7 +35,6 @@ $(function () {
       contentType: "application/json",
       url: "/post/add",
     }).done(function (data) {
-      console.log(data);
       if (!data.ok) {
         $(".post-form h2").after('<p class="error">' + data.error + "</p>");
         if (data.fields) {

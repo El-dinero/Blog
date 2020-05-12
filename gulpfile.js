@@ -3,7 +3,7 @@ const gulp = require("gulp");
 const concat = require("gulp-concat");
 const sass = require("gulp-sass");
 const cleanCSS = require("gulp-clean-css");
-// const uglify = require("gulp-uglify");
+const uglify = require("gulp-uglify");
 const autoprefixer = require("gulp-autoprefixer");
 const cssnano = require("gulp-cssnano");
 const plumber = require("gulp-plumber");
@@ -60,11 +60,11 @@ function scripts() {
       //Объединение файлов в один
       .pipe(concat("scripts.js"))
       //Минификация JS
-      // .pipe(
-      //   uglify({
-      //     toplevel: true
-      //   })
-      // )
+      .pipe(
+        uglify({
+          toplevel: true,
+        })
+      )
       //Выходная папка для скриптов
       .pipe(gulp.dest("./pablic/javascripts"))
   );

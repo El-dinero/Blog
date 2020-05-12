@@ -12,7 +12,7 @@
     </div>
     <%= item.body %>
     <span class="link" id="reply">ответить</span>
-    <%- include('./comments.ejs', {items: item.children}) %>
+    <%- include('./components.ejs', {items: item.children}); -%>
   </li>
   <% }) %> <% if (items.length) { %>
 </ul>

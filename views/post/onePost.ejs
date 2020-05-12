@@ -13,8 +13,7 @@
         </div>
         <div class="bottom">
           <div class="author">
-            Автор:
-            <a href="/">Гедеван</a>
+            <a href="/users/<%= user.login%>"><%= user.login%></a>
           </div>
           <a href="/">Комментарии</a>
         </div>
@@ -22,6 +21,7 @@
       <div class="comments" id="<%=post.id %>">
         <h3>Комментарии</h3>
         <div class="comment-list">
+          <%- include('../components/components.ejs',{items: comments}); -%>
           <span class="link" id="new">Оставить комментарий</span>
           <form class="comment">
             <textarea name="body"></textarea>
