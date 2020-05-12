@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt-nodejs");
 
-const models = require("../models/user");
+const models = require("../models/index");
 
 router.post("/register", (req, res, next) => {
   const { login, password, passwordConfirm } = req.body;

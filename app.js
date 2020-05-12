@@ -19,9 +19,7 @@ mongoose.connection
   .on("close", () => console.log("Database connection..."))
   .once("open", () => {
     const info = mongoose.connections[0];
-    console.log(
-      `Connected to Host:${info.host}:${info.port}/${info.name}`
-    );
+    console.log(`Connected to Host:${info.host}:${info.port}/${info.name}`);
     //Autopost + 10
     // require("./mocks")();
     //Listen Express
@@ -63,6 +61,7 @@ app.use("/", require("./routes/index"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/post", require("./routes/post"));
 app.use("/users", require("./routes/user"));
+app.use("/comment", require("./routes/comment"));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
