@@ -49,7 +49,6 @@
     "express-session": "^1.17.1",
     "faker": "^4.1.0",
     "jquery": "^3.4.1",
-    "medium-editor": "^5.23.3",
     "moment": "^2.25.3",
     "mongoose": "^5.8.11",
     "mongoose-autopopulate": "^0.12.2",

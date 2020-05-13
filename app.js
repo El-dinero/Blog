@@ -13,7 +13,6 @@ const app = express();
 //database
 mongoose.Promise = global.Promise;
 mongoose.set("debug", config.IS_PRODUCTION);
-mongoose.set("useCreateIndex", true);
 mongoose.connection
   .on("error", (error) => console.log(error))
   .on("close", () => console.log("Database connection..."))
@@ -30,6 +29,8 @@ mongoose.connection
 mongoose.connect(config.MONGO_URL, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
 });
 
 // sessions

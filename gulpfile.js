@@ -12,10 +12,7 @@ const del = require("del");
 //Порядок подключения css файлов
 const cssFiles = ["./dev/scss/**/*.scss"];
 //Порядок подключения js файлов
-const jsFiles = [
-  "./dev/js/**/*.js",
-  "node_modules/medium-editor/dist/js/medium-editor.min.js",
-];
+const jsFiles = ["./dev/js/**/*.js"];
 
 const dels = [
   "./pablic/javascripts/scripts.js",
