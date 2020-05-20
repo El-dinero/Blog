@@ -4,8 +4,8 @@
   "description": "My Blog lesons",
   "main": "app.js",
   "scripts": {
-    "dev": "node app.js",
-    "start": "concurrently \"gulp dev \" \"nodemon app.js\""
+    "start": "node app.js" ,
+    "dev": "concurrently \"gulp dev \" \"nodemon app.js\""
   },
   "repository": {
     "type": "git",
