@@ -41,16 +41,13 @@ const schema = new Schema(
 );
 
 schema.pre("save", async function (next) {
-  if (this.isNew) {
-    await Post.incCommentCount(this.post);
-  }
+  if (this.isNew) await Post.incCommentCount(this.post._id);
   next();
 });
 
 schema.plugin(autopopulate);
 
-schema.set("toJSON", {
-  virtuals: true,
-});
+schema.set('toObject', { virtuals: true });
+schema.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model("Comment", schema);

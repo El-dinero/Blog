@@ -4,46 +4,40 @@ const URLSlugs = require("mongoose-url-slugs");
 const tr = require("transliter");
 
 const schema = new Schema(
-  {
-    title: {
-      type: String,
-      required: true,
+    {
+        title: {
+            type: String,
+            required: true,
+        },
+        body: {
+            type: String,
+        },
+        owner: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+        commentCount: {
+            type: Number,
+            default: 0,
+        },
     },
-    body: {
-      type: String,
-    },
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-    commentCount: {
-      type: Number,
-      default: 0,
-    },
-  },
-  {
-    timestamps: true,
-  }
+    {
+        timestamps: true,
+    }
 );
 
-schema.statics = {
-  incCommentCount(postId) {
-    return this.findByIdAndUpdate(
-      postId,
-      { $inc: { commentCount: 1 } },
-      { new: true }
-    );
-  },
-};
+schema.statics.incCommentCount = function incCommentCount(postId) {
+    return this.updateOne({_id: postId}, {$inc: {commentCount: 1}});
+}
 
 schema.plugin(
-  URLSlugs("title", {
-    field: "url",
-    generator: (text) => tr.slugify(text),
-  })
+    URLSlugs("title", {
+        field: "url",
+        generator: (text) => tr.slugify(text),
+    })
 );
-schema.set("toJSON", {
-  virtuals: true,
-});
+
+schema.set('toObject', {virtuals: true});
+schema.set('toJSON', {virtuals: true});
 
 module.exports = mongoose.model("Post", schema);
