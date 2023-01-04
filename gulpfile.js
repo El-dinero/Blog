@@ -10,13 +10,13 @@ const plumber = require("gulp-plumber");
 const del = require("del");
 /* eslint-enable node/no-unpublished-require */
 //Порядок подключения css файлов
-const cssFiles = ["./dev/scss/**/*.scss"];
+const cssFiles = ["./dev/scss/style.scss"];
 //Порядок подключения js файлов
 const jsFiles = ["./dev/js/**/*.js"];
 
 const dels = [
-  "./pablic/javascripts/scripts.js",
-  "./pablic/staylesheets/styles.css"
+  "./public/javascripts/scripts.js",
+  "./public/staylesheets/styles.css",
 ];
 //Таск на стили CSS
 function styles() {
@@ -33,17 +33,17 @@ function styles() {
       //Минификация CSS
       .pipe(
         autoprefixer(["last 15 versions", "> 1%", "ie 8", "ie 7"], {
-          cascade: true
+          cascade: true,
         })
       )
       .pipe(cssnano())
       .pipe(
         cleanCSS({
-          level: 2
+          level: 2,
         })
       )
       //Выходная папка для стилей
-      .pipe(gulp.dest("./pablic/staylesheets"))
+      .pipe(gulp.dest("./public/staylesheets"))
   );
 }
 
@@ -59,11 +59,11 @@ function scripts() {
       //Минификация JS
       .pipe(
         uglify({
-          toplevel: true
+          toplevel: true,
         })
       )
       //Выходная папка для скриптов
-      .pipe(gulp.dest("./pablic/javascripts"))
+      .pipe(gulp.dest("./public/javascripts"))
   );
 }
 function watch() {

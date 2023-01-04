@@ -1,1 +1,40 @@
-@import "_heder";
+$blackColor: #333;
+$whiteColor: #fff;
+$greyColor: #b4b4b4;
+$primaryColor: #0d6efd;
+$secondaryColor: #d9854d;
+$successColor: #a3ee00;
+$errorColor: #fd0800;
+$freeSpace: 15px;
+$headerHeight: 49px;
+$footerHeight: 49px;
+$borderRadius: 2px;
+$paginationButon: 15px;
+
+@import "_reset";
+@import "_grid";
+@import "_typography";
+@import "_forms";
+@import "_links";
+
+html {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  color: $blackColor;
+  background-color: lighten($greyColor, 7);
+  padding-top: $headerHeight + $freeSpace;
+}
+
+@import "_header";
+@import "_main";
+@import "_footer";
+@import "components/_post";
+@import "components/_auth";
+@import "components/_comments";
